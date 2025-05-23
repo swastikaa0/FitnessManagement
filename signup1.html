@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Signup Page - FIT ME</title>
+    <link rel="stylesheet" href="signup1.css">
+</head>
+<body>
+    <div class="signup-container">
+        <div class="signup-image-section">
+            <!-- 
+                Replace 'gym-placeholder.jpg' with the actual path to your gym image.
+                For a quick test, you can use an online placeholder like:
+                https://images.unsplash.com/photo-1517836357463-d25dfeac3438?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8Z3ltfGVufDB8fDB8fHww&auto=format&fit=crop&w=800&q=60
+            -->
+            <img src="gym-placeholder.jpg" alt="People working out in a modern gym with treadmills and weights">
+        </div>
+        <div class="signup-form-section">
+            <h2>SIGNUP PAGE</h2>
+            <form id="signupForm">
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" name="email" placeholder="Enter your email address" required>
+                </div>
+                <div class="form-group">
+                    <label for="fullName">Full Name</label>
+                    <input type="text" id="fullName" name="fullName" placeholder="Enter your full name" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" placeholder="Create your password" required>
+                </div>
+                <button type="submit" class="btn-create-account">Create an account</button>
+            </form>
+            <p class="login-prompt">
+                Already have an account? <a href="#">Login</a>
+            </p>
+        </div>
+    </div>
+    <script src="./signup1.js"></script>
+</body>
+</html>
