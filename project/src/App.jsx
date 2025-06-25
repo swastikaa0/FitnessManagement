@@ -4,6 +4,7 @@ import viteLogo from '/vite.svg'
 import './App.css'
 import LoginPage from './Login'
 import Signup from './Signup'
+import AddWorkout from './AddWorkout'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -12,6 +13,7 @@ function App() {
     <>
       <LoginPage />
       <Signup />
+      <AddWorkout/>
       
     </>
   )
