@@ -32,16 +32,79 @@
 //   )
 // }
 
-import React from 'react';
-import Profile from './components/Profile';
+// import React from 'react';
+// import Profile from './components/Profile';
+// import NotificationSettings from "./components/NotificationSettings";
+// import GeneralSettings from "./components/GeneralSettings";
+
+// const App = () => {
+//   return (
+//     <div className="bg-gray-100 min-h-screen flex justify-center items-center">
+//       <Profile />
+//     </div>
+    
+
+//   );
+// };
+
+
+
+// export default App;
+
+
+// import React from 'react';
+// import Profile from './components/Profile';
+// import NotificationSettings from "./components/NotificationSettings";
+
+// const App = () => {
+//   return (
+//     <div className="bg-gray-100 min-h-screen flex justify-center items-center">
+//       <Profile />
+//     </div>
+    
+
+//   );
+// };
+
+
+
+// export default App;
+
+import React from "react";
+import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+
+import Profile from "./components/Profile";
+import NotificationSettings from "./components/NotificationSettings";
+import GeneralSettings from "./components/GeneralSettings";
 
 const App = () => {
   return (
-    <div className="bg-gray-100 min-h-screen flex justify-center items-center">
-      <Profile />
-    </div>
+    <Router>
+      <div className="min-h-screen bg-gray-100">
+        {/* Navigation Bar */}
+        <nav className="bg-white shadow-md p-4 flex justify-center gap-10 text-lg font-medium">
+          <Link to="/" className="text-blue-600 hover:underline">
+            Profile
+          </Link>
+          <Link to="/notifications" className="text-blue-600 hover:underline">
+            Notifications
+          </Link>
+          <Link to="/settings" className="text-blue-600 hover:underline">
+            General Settings
+          </Link>
+        </nav>
+
+        {/* Main Content */}
+        <div className="flex justify-center items-center p-10">
+          <Routes>
+            <Route path="/" element={<Profile />} />
+            <Route path="/notifications" element={<NotificationSettings />} />
+            <Route path="/settings" element={<GeneralSettings />} />
+          </Routes>
+        </div>
+      </div>
+    </Router>
   );
 };
 
 export default App;
-
