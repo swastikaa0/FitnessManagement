@@ -1,4 +1,3 @@
-// src/components/MealDashboard.jsx
 import React from "react";
 
 const MealDashboard = () => {
@@ -31,29 +30,35 @@ const MealDashboard = () => {
               key={idx}
               className="bg-gray-100 p-6 rounded-xl flex flex-col items-center"
             >
-              <svg viewBox="0 0 42 42" className="w-24 h-24 mb-4">
-                <circle
-                  className="text-gray-300"
-                  stroke="currentColor"
-                  strokeWidth="3"
-                  fill="transparent"
-                  r="15.915"
-                  cx="21"
-                  cy="21"
-                />
-                <circle
-                  className="text-blue-500"
-                  stroke="currentColor"
-                  strokeWidth="3"
-                  strokeDasharray={`${item.percentage} 100`}
-                  strokeDashoffset="0"
-                  fill="transparent"
-                  r="15.915"
-                  cx="21"
-                  cy="21"
-                />
-              </svg>
-              <div className="text-xl font-semibold">{item.value}</div>
+              {/* Circle with centered value */}
+              <div className="relative w-24 h-24 mb-4">
+                <svg viewBox="0 0 42 42" className="w-full h-full">
+                  <circle
+                    className="text-gray-300"
+                    stroke="currentColor"
+                    strokeWidth="3"
+                    fill="transparent"
+                    r="15.915"
+                    cx="21"
+                    cy="21"
+                  />
+                  <circle
+                    className="text-blue-500"
+                    stroke="currentColor"
+                    strokeWidth="3"
+                    strokeDasharray={`${item.percentage} 100`}
+                    strokeDashoffset="0"
+                    fill="transparent"
+                    r="15.915"
+                    cx="21"
+                    cy="21"
+                  />
+                </svg>
+                <div className="absolute inset-0 flex items-center justify-center text-lg font-semibold">
+                  {item.value}
+                </div>
+              </div>
+
               <div className="text-gray-700">{item.label}</div>
               <div className="text-sm text-gray-500">{`${item.value}/${item.max}`}</div>
             </div>
