@@ -7,13 +7,13 @@ const GeneralSettings = () => {
         <h2 className="text-3xl font-bold text-center mb-8">General Settings</h2>
 
         <div className="space-y-6">
-          {/* Language Setting */}
+          
           <div className="flex justify-between items-center border-b pb-4">
             <span className="text-lg text-gray-800">Language</span>
             <span className="text-gray-600">English</span>
           </div>
 
-          {/* Dark Mode Setting */}
+          
           <div className="flex justify-between items-center border-b pb-4">
             <span className="text-lg text-gray-800">Dark Mode</span>
             <label className="relative inline-flex items-center cursor-pointer">
