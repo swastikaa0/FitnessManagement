@@ -70,7 +70,6 @@
 
 
 // export default App;
-
 import React from "react";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 
@@ -78,6 +77,7 @@ import Profile from "./components/Profile";
 import NotificationSettings from "./components/NotificationSettings";
 import GeneralSettings from "./components/GeneralSettings";
 import MealDashboard from "./components/MealDashboard";
+import CalorieTracker from "./components/CalorieTracker"; // ✅ new import
 
 const App = () => {
   return (
@@ -89,6 +89,7 @@ const App = () => {
           <Link to="/notifications" className="text-blue-600 hover:underline">Notifications</Link>
           <Link to="/settings" className="text-blue-600 hover:underline">General Settings</Link>
           <Link to="/meals" className="text-blue-600 hover:underline">Meal Plan</Link>
+          <Link to="/calories" className="text-blue-600 hover:underline">Calorie Tracker</Link> {/* ✅ new link */}
         </nav>
 
         {/* Main Content */}
@@ -98,6 +99,7 @@ const App = () => {
             <Route path="/notifications" element={<NotificationSettings />} />
             <Route path="/settings" element={<GeneralSettings />} />
             <Route path="/meals" element={<MealDashboard />} />
+            <Route path="/calories" element={<CalorieTracker />} /> {/* ✅ new route */}
           </Routes>
         </div>
       </div>
