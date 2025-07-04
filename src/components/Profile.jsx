@@ -8,7 +8,7 @@ const Profile = () => {
         <h2 className="text-3xl font-semibold text-center mb-8">Personal Profile</h2>
 
         <div className="flex flex-row items-start gap-10">
-          {/* Profile Image and Info */}
+          
           <div className="flex flex-col items-center w-1/3">
             <img
               src={profileImg}
@@ -19,7 +19,8 @@ const Profile = () => {
             <p className="text-gray-600">Sabinshrestha@gmail.com</p>
           </div>
 
-          {/* Profile Form */}
+         
+         
           <form className="flex-1 space-y-6">
             <div>
               <label htmlFor="fullname" className="block text-sm font-medium">Full Name</label>
@@ -46,7 +47,7 @@ const Profile = () => {
               <input
                 type="date"
                 id="dob"
-                defaultValue="1991-06-19"
+                defaultValue="2004-02-24"
                 className="mt-1 w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
               />
             </div>
