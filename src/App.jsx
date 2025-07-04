@@ -76,8 +76,9 @@ import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import Profile from "./components/Profile";
 import NotificationSettings from "./components/NotificationSettings";
 import GeneralSettings from "./components/GeneralSettings";
-import MealDashboard from "./components/MealDashboard";
+import MealDashboard from "./components/MealPlanDashboard";
 import CalorieTracker from "./components/CalorieTracker"; // ✅ new import
+import MealPlanDashboard from "./components/MealPlanDashboard";
 
 const App = () => {
   return (
@@ -98,7 +99,7 @@ const App = () => {
             <Route path="/" element={<Profile />} />
             <Route path="/notifications" element={<NotificationSettings />} />
             <Route path="/settings" element={<GeneralSettings />} />
-            <Route path="/meals" element={<MealDashboard />} />
+            <Route path="/meals" element={<MealPlanDashboard />} />
             <Route path="/calories" element={<CalorieTracker />} /> {/* ✅ new route */}
           </Routes>
         </div>
