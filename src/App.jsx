@@ -55,6 +55,7 @@
 // import React from 'react';
 // import Profile from './components/Profile';
 // import NotificationSettings from "./components/NotificationSettings";
+// import MealDashboard from "./components/MealDashboard";
 
 // const App = () => {
 //   return (
@@ -76,6 +77,7 @@ import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import Profile from "./components/Profile";
 import NotificationSettings from "./components/NotificationSettings";
 import GeneralSettings from "./components/GeneralSettings";
+import MealDashboard from "./components/MealDashboard";
 
 const App = () => {
   return (
@@ -83,15 +85,10 @@ const App = () => {
       <div className="min-h-screen bg-gray-100">
         {/* Navigation Bar */}
         <nav className="bg-white shadow-md p-4 flex justify-center gap-10 text-lg font-medium">
-          <Link to="/" className="text-blue-600 hover:underline">
-            Profile
-          </Link>
-          <Link to="/notifications" className="text-blue-600 hover:underline">
-            Notifications
-          </Link>
-          <Link to="/settings" className="text-blue-600 hover:underline">
-            General Settings
-          </Link>
+          <Link to="/" className="text-blue-600 hover:underline">Profile</Link>
+          <Link to="/notifications" className="text-blue-600 hover:underline">Notifications</Link>
+          <Link to="/settings" className="text-blue-600 hover:underline">General Settings</Link>
+          <Link to="/meals" className="text-blue-600 hover:underline">Meal Plan</Link>
         </nav>
 
         {/* Main Content */}
@@ -100,6 +97,7 @@ const App = () => {
             <Route path="/" element={<Profile />} />
             <Route path="/notifications" element={<NotificationSettings />} />
             <Route path="/settings" element={<GeneralSettings />} />
+            <Route path="/meals" element={<MealDashboard />} />
           </Routes>
         </div>
       </div>
