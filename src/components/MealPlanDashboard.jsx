@@ -32,28 +32,29 @@ const MealPlanDashboard = () => {
   ]);
 
   const [meals, setMeals] = useState([
-    {
-      id: 'breakfast',
-      type: 'Breakfast',
-      name: 'Oatmeal with Berries',
-      calories: 350,
-      image: 'https://images.unsplash.com/photo-1574168643341-e11cb437d3b9?w=400&h=300&fit=crop' // Pancakes
-    },
-    {
-      id: 'lunch',
-      type: 'Lunch',
-      name: 'Grilled Chicken Salad',
-      calories: 450,
-      image: 'https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=400&h=300&fit=crop' // Pasta
-    },
-    {
-      id: 'dinner',
-      type: 'Dinner',
-      name: 'Salmon with Asparagus',
-      calories: 600,
-      image: 'https://images.unsplash.com/photo-1565299624946-b28f40a0ca4b?w=400&h=300&fit=crop' // Pizza
-    }
-  ]);
+  {
+    id: 'breakfast',
+    type: 'Breakfast',
+    name: 'Oatmeal with Berries',
+    calories: 350,
+    image: 'https://source.unsplash.com/400x300/?oatmeal,berries' // ✅ updated
+  },
+  {
+    id: 'lunch',
+    type: 'Lunch',
+    name: 'Grilled Chicken Salad',
+    calories: 450,
+    image: 'https://www.bing.com/images/search?view=detailv2&iss=sbi&FORM=recidp&sbisrc=ImgDropper&q=&imgurl=https://bing.com/th?id=OSK.4a8aba87b21745d28a507be235ac366b&idpbck=1&sim=4&pageurl=69ebacfa926885f7eefaee721f389816&filters=ForceHighConfRecipe:%22true%22&idpp=recipe' // ✅ updated
+  },
+  {
+    id: 'dinner',
+    type: 'Dinner',
+    name: 'Salmon with Asparagus',
+    calories: 600,
+    image: 'https://source.unsplash.com/400x300/?salmon,asparagus' // ✅ updated
+  }
+]);
+
 
   const createNewPlan = () => {
     alert('Create new meal plan clicked!');

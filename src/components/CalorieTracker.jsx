@@ -130,7 +130,7 @@ const CalorieTracker = () => {
             ))}
           </div>
           
-          {/* Add Meal Button */}
+          {/* Andd Meal Button */}
           <div className="text-center">
             <button
               onClick={addMeal}
