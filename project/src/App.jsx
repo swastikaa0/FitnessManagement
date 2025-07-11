@@ -5,6 +5,7 @@ import './App.css'
 import LoginPage from './Login'
 import Signup from './Signup'
 import AddWorkout from './AddWorkout'
+import Homepage from './Homepage'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -14,6 +15,7 @@ function App() {
       <LoginPage />
       <Signup />
       <AddWorkout/>
+      <Homepage/>
       
     </>
   )
