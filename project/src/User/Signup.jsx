@@ -1,79 +1,93 @@
-// import React from "react";
 
-// const Signup = () => {
-//   return (
-//     <div className="min-h-screen flex">
-//       {/* Left Image Section */}
-//       <div className="hidden md:flex w-1/2 bg-cover bg-center rounded-r-[100px]"
-//         style={{
-//           backgroundImage: `url('signup.webp')`
-//         }}
-//       ></div>
 
-//       {/* Right Form Section */}
-//       <div className="flex flex-col justify-center items-center w-full md:w-1/2 px-8 py-12 bg-[#f8f9ff]">
-//         <div className="w-full max-w-md">
-//           <h2 className="text-2xl font-bold text-center text-[#a98fa1] mb-8">
-//             SIGNUP PAGE
-//           </h2>
 
-//           <form className="space-y-6">
-//             <div>
-//               <label className="block mb-1 text-sm font-medium text-gray-700">
-//                 Email Address
-//               </label>
-//               <input
-//                 type="email"
-//                 placeholder="Enter your email address"
-//                 className="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500"
-//               />
-//             </div>
+import React from 'react';
+import { useForm } from 'react-hook-form';
+import { Link } from 'react-router-dom';
 
-//             <div>
-//               <label className="block mb-1 text-sm font-medium text-gray-700">
-//                 Full Name
-//               </label>
-//               <input
-//                 type="text"
-//                 placeholder="Enter your full name"
-//                 className="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500"
-//               />
-//             </div>
+export default function SignupPage() {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors }
+  } = useForm();
 
-//             <div>
-//               <label className="block mb-1 text-sm font-medium text-gray-700">
-//                 Password
-//               </label>
-//               <div className="relative">
-//                 <input
-//                   type="password"
-//                   placeholder="Create your password"
-//                   className="w-full px-4 py-3 pr-10 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500"
-//                 />
-//                 <span className="absolute right-3 top-3 text-gray-500 cursor-pointer">
-//                   👁️
-//                 </span>
-//               </div>
-//             </div>
+  const onSubmit = (data) => {
+    console.log('Form submitted:', data);
+  };
 
-//             <button
-//               type="submit"
-//               className="w-full py-3 bg-gradient-to-r from-purple-500 to-indigo-500 text-white rounded-full text-lg font-medium hover:opacity-90 transition"
-//             >
-//               Create an account
-//             </button>
+  return (
+    <div className="min-h-screen flex items-center justify-center bg-white px-4">
+      <div className="flex w-full max-w-5xl bg-white shadow-lg rounded-lg overflow-hidden">
+        
+        <div className="w-full md:w-1/2 p-10">
+          <h2 className="text-2xl font-bold text-gray-800 mb-2">Join us today!</h2>
+          <p className="text-sm text-gray-600 mb-6">Create an account to get started</p>
 
-//             <p className="text-center text-sm text-gray-600 mt-4">
-//               Already have an account?{" "}
-//               <a href="#" className="text-blue-600 font-semibold hover:underline">
-//                 Login
-//               </a>
-//             </p>
-//           </form>
-//         </div>
-//       </div>
-//     </div>
-//   );
-// };
+          <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+           
+            <div>
+              <label className="block text-sm text-gray-700 mb-1">Email Address</label>
+              <input
+                type="email"
+                {...register('email', { required: 'Email is required' })}
+                placeholder="Enter your email address"
+                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+              />
+              {errors.email && <p className="text-red-500 text-xs mt-1">{errors.email.message}</p>}
+            </div>
 
-// export default Signup;
+           
+            <div>
+              <label className="block text-sm text-gray-700 mb-1">Full Name</label>
+              <input
+                type="text"
+                {...register('fullName', { required: 'Full name is required' })}
+                placeholder="Enter your full name"
+                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+              />
+              {errors.fullName && <p className="text-red-500 text-xs mt-1">{errors.fullName.message}</p>}
+            </div>
+
+            
+            <div>
+              <label className="block text-sm text-gray-700 mb-1">Password</label>
+              <input
+                type="password"
+                {...register('password', { required: 'Password is required' })}
+                placeholder="Create your password"
+                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+              />
+              {errors.password && <p className="text-red-500 text-xs mt-1">{errors.password.message}</p>}
+            </div>
+
+            
+            <button
+              type="submit"
+              className="w-full bg-blue-700 text-white py-2 rounded-full hover:bg-blue-800 transition"
+            >
+              Sign Up
+            </button>
+          </form>
+
+         
+          <p className="text-sm text-center text-gray-600 mt-4">
+            Already have an account?{' '}
+            <Link to="/login" className="text-blue-700 font-medium hover:underline">
+              Login
+            </Link>
+          </p>
+        </div>
+
+       
+        <div className="hidden md:block md:w-1/2 relative">
+          <img
+            src="/images/Signup.jpg" 
+            alt="Signup Illustration"
+            className="w-full h-full object-cover"
+          />
+        </div>
+      </div>
+    </div>
+  );
+}
