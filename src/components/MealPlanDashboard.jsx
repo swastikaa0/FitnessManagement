@@ -1,4 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
+import breakfastImg from '../assets/ota.jpeg'; // ✅ Local image import for breakfast
+import lunchImg from '../assets/grill.jpeg'; // ✅ Local image import for lunch
+import dinnerImg from '../assets/dinnersalmon.jpeg'; // ✅ Local image import for dinner
 
 const MealPlanDashboard = () => {
   const [nutritionData, setNutritionData] = useState([
@@ -32,29 +35,28 @@ const MealPlanDashboard = () => {
   ]);
 
   const [meals, setMeals] = useState([
-  {
-    id: 'breakfast',
-    type: 'Breakfast',
-    name: 'Oatmeal with Berries',
-    calories: 350,
-    image: 'https://source.unsplash.com/400x300/?oatmeal,berries' // ✅ updated
-  },
-  {
-    id: 'lunch',
-    type: 'Lunch',
-    name: 'Grilled Chicken Salad',
-    calories: 450,
-    image: 'https://www.bing.com/images/search?view=detailv2&iss=sbi&FORM=recidp&sbisrc=ImgDropper&q=&imgurl=https://bing.com/th?id=OSK.4a8aba87b21745d28a507be235ac366b&idpbck=1&sim=4&pageurl=69ebacfa926885f7eefaee721f389816&filters=ForceHighConfRecipe:%22true%22&idpp=recipe' // ✅ updated
-  },
-  {
-    id: 'dinner',
-    type: 'Dinner',
-    name: 'Salmon with Asparagus',
-    calories: 600,
-    image: 'https://source.unsplash.com/400x300/?salmon,asparagus' // ✅ updated
-  }
-]);
-
+    {
+      id: 'breakfast',
+      type: 'Breakfast',
+      name: 'Oatmeal with Berries',
+      calories: 350,
+      image: breakfastImg // ✅ Using local image (ota.jpeg)
+    },
+    {
+      id: 'lunch',
+      type: 'Lunch',
+      name: 'Grilled Chicken Salad',
+      calories: 450,
+      image: lunchImg // ✅ Using local image (grill.jpeg)
+    },
+    {
+      id: 'dinner',
+      type: 'Dinner',
+      name: 'Salmon with Asparagus',
+      calories: 600,
+      image: dinnerImg // ✅ Using local image (dinnersalmon.jpeg)
+    }
+  ]);
 
   const createNewPlan = () => {
     alert('Create new meal plan clicked!');
@@ -78,14 +80,7 @@ const MealPlanDashboard = () => {
       <div className="flex flex-col items-center">
         <div className="relative w-24 h-24 mb-4">
           <svg className="w-full h-full transform -rotate-90" viewBox="0 0 42 42">
-            <circle
-              className="stroke-gray-200"
-              cx="21"
-              cy="21"
-              r="15.915"
-              fill="none"
-              strokeWidth="3"
-            />
+            <circle className="stroke-gray-200" cx="21" cy="21" r="15.915" fill="none" strokeWidth="3" />
             <circle
               className={`${nutrition.color} transition-all duration-1000 ease-out`}
               cx="21"
@@ -105,9 +100,7 @@ const MealPlanDashboard = () => {
           </div>
         </div>
         <div className="text-center">
-          <div className="text-xl font-semibold text-gray-800 mb-1">
-            {nutrition.label}
-          </div>
+          <div className="text-xl font-semibold text-gray-800 mb-1">{nutrition.label}</div>
           <div className="text-sm text-gray-600">
             {nutrition.current}{nutrition.unit}/{nutrition.target}{nutrition.unit}
           </div>
@@ -130,15 +123,9 @@ const MealPlanDashboard = () => {
         <div className="absolute inset-0 bg-black bg-opacity-20 group-hover:bg-opacity-10 transition-all duration-300"></div>
       </div>
       <div className="p-6">
-        <div className="text-sm font-medium text-blue-600 mb-2 uppercase tracking-wide">
-          {meal.type}
-        </div>
-        <div className="text-xl font-bold text-gray-800 mb-2">
-          {meal.name}
-        </div>
-        <div className="text-lg text-gray-600 font-medium">
-          {meal.calories} Calories
-        </div>
+        <div className="text-sm font-medium text-blue-600 mb-2 uppercase tracking-wide">{meal.type}</div>
+        <div className="text-xl font-bold text-gray-800 mb-2">{meal.name}</div>
+        <div className="text-lg text-gray-600 font-medium">{meal.calories} Calories</div>
       </div>
     </div>
   );
@@ -149,9 +136,7 @@ const MealPlanDashboard = () => {
         {/* Header */}
         <div className="bg-white rounded-2xl shadow-lg p-8 mb-8">
           <div className="flex justify-between items-center">
-            <h1 className="text-5xl font-bold text-gray-800">
-              Meal Plan
-            </h1>
+            <h1 className="text-5xl font-bold text-gray-800">Meal Plan</h1>
             <button
               onClick={createNewPlan}
               className="bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white font-bold py-4 px-8 rounded-full text-lg shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 focus:outline-none focus:ring-4 focus:ring-blue-300"
@@ -166,9 +151,7 @@ const MealPlanDashboard = () => {
           {/* Nutrition Section */}
           <div className="xl:col-span-1">
             <div className="bg-white rounded-2xl shadow-lg p-8">
-              <h2 className="text-3xl font-bold text-gray-800 mb-8">
-                Daily Nutrition
-              </h2>
+              <h2 className="text-3xl font-bold text-gray-800 mb-8">Daily Nutrition</h2>
               <div className="space-y-6">
                 {nutritionData.map((nutrition) => (
                   <NutritionCard key={nutrition.id} nutrition={nutrition} />
@@ -180,9 +163,7 @@ const MealPlanDashboard = () => {
           {/* Meals Section */}
           <div className="xl:col-span-2">
             <div className="bg-white rounded-2xl shadow-lg p-8">
-              <h2 className="text-3xl font-bold text-gray-800 mb-8">
-                Today's Meals
-              </h2>
+              <h2 className="text-3xl font-bold text-gray-800 mb-8">Today's Meals</h2>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {meals.map((meal) => (
                   <MealCard key={meal.id} meal={meal} />
