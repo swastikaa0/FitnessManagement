@@ -51,8 +51,7 @@ function App() {
       <Routes>
         <Route path='/register' element = {<SignupPage />} />
         
-        <Route path = '/' element= {<Homepage />} />
-        
+        <Route path = '/' element= {<Homepage />} /> 
         
         <Route path= '/admin/dashboard' element = {<AdminDashboard />} />
         <Route path= '/admin/meals' element = {<AdminMeals />} />
@@ -60,7 +59,7 @@ function App() {
         <Route path= '/admin/workouts' element = {<AdminWorkouts />} />
         <Route path= '/admin/users' element = {<AdminUsers />} />
         <Route path= '/admin/profile' element = {<AdminProfile />} />
-        <Route path='/login' element = {<LoginPage/>} />
+         <Route path='/login' element = {<LoginPage/>} /> 
        
 
 
