@@ -1,24 +1,87 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { DollarSign, TrendingUp, Users } from 'lucide-react';
 import StatCard from '../components/statcard';
 import AdminNavbar from '../components/adminnavbar';
 import AdminHeader from '../components/adminheader';
+import { useAdminRevenue } from '../hooks/useApi';
+import apiService from '../services/api';
 
 export default function AdminRevenue() {
-  const dashboardStats = {
-    monthlyRevenue: 87650,
-    totalRevenue: 456789,
-    totalUsers: 2847
-  };
+  const { data: revenueData, loading, error, refetch } = useAdminRevenue();
+  const [dashboardStats, setDashboardStats] = useState({
+    monthlyRevenue: 0,
+    totalRevenue: 0,
+    totalUsers: 0
+  });
 
-  const revenueData = [
-    { month: 'Jan', revenue: 65000, subscriptions: 52000, oneTime: 13000, users: 180 },
-    { month: 'Feb', revenue: 72000, subscriptions: 58000, oneTime: 14000, users: 195 },
-    { month: 'Mar', revenue: 68000, subscriptions: 55000, oneTime: 13000, users: 188 },
-    { month: 'Apr', revenue: 78000, subscriptions: 62000, oneTime: 16000, users: 210 },
-    { month: 'May', revenue: 85000, subscriptions: 68000, oneTime: 17000, users: 225 },
-    { month: 'Jun', revenue: 87650, subscriptions: 70000, oneTime: 17650, users: 240 }
-  ];
+  useEffect(() => {
+    const fetchDashboardStats = async () => {
+      try {
+        const dashboardResponse = await apiService.admin.getDashboardStats();
+        console.log('Dashboard Response:', dashboardResponse);
+        
+        const dashboardData = dashboardResponse.data || dashboardResponse;
+        const stats = dashboardData.stats || dashboardData;
+        
+        setDashboardStats({
+          monthlyRevenue: revenueData?.data?.monthlyRevenue || stats.monthlyRevenue || 0,
+          totalRevenue: revenueData?.data?.yearlyRevenue || stats.totalRevenue || 0,
+          totalUsers: stats.totalUsers || 0
+        });
+      } catch (error) {
+        console.error('Failed to fetch dashboard stats:', error);
+      }
+    };
+
+    if (revenueData) {
+      fetchDashboardStats();
+    }
+  }, [revenueData]);
+
+  if (loading) {
+    return (
+      <div className="flex min-h-screen bg-gradient-to-br from-gray-50 to-gray-100">
+        <AdminNavbar />
+        <div className="flex-1 flex flex-col">
+          <AdminHeader />
+          <div className="flex-1 flex items-center justify-center">
+            <div className="text-center">
+              <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-green-500 mx-auto mb-4"></div>
+              <p className="text-gray-600">Loading revenue data...</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="flex min-h-screen bg-gradient-to-br from-gray-50 to-gray-100">
+        <AdminNavbar />
+        <div className="flex-1 flex flex-col">
+          <AdminHeader />
+          <div className="flex-1 flex items-center justify-center">
+            <div className="text-center">
+              <p className="text-red-600 mb-4">Error loading revenue data: {error}</p>
+              <button 
+                onClick={refetch}
+                className="px-4 py-2 bg-green-500 text-white rounded-lg hover:bg-green-600"
+              >
+                Retry
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  const monthlyData = revenueData?.data?.subscriptionBreakdown || [];
+  
+  console.log('Revenue Data:', revenueData);
+  console.log('Monthly Data:', monthlyData);
+  console.log('Dashboard Stats:', dashboardStats);
 
   return (
     <div className="flex min-h-screen bg-gradient-to-br from-gray-50 to-gray-100">
@@ -74,27 +137,33 @@ export default function AdminRevenue() {
                       <p className="text-sm text-green-600">Monthly recurring</p>
                     </div>
                     <div className="text-right">
-                      <p className="font-bold text-green-800">Rs 70,000</p>
-                      <p className="text-sm text-green-600">100% of total</p>
+                      <p className="font-bold text-green-800">Rs {(revenueData?.data?.monthlyRevenue || dashboardStats.monthlyRevenue).toLocaleString()}</p>
+                      <p className="text-sm text-green-600">Current month</p>
                     </div>
                   </div>
                 </div>
               </div>
 
               <div className="bg-white rounded-2xl p-6 shadow-lg border border-gray-100">
-                <h3 className="text-xl font-bold text-gray-900 mb-4">Monthly Breakdown</h3>
+                <h3 className="text-xl font-bold text-gray-900 mb-4">Subscription Breakdown</h3>
                 <div className="space-y-3">
-                  {revenueData.slice(-4).map((item, index) => (
-                    <div key={index} className="flex items-center justify-between p-3 bg-gray-50 rounded-xl">
-                      <div>
-                        <p className="font-semibold text-gray-900">{item.month} 2025</p>
-                        <p className="text-sm text-gray-600">{item.users} users</p>
-                      </div>
-                      <div className="text-right">
-                        <p className="font-bold text-gray-900">Rs {item.revenue.toLocaleString()}</p>
-                      </div>
+                  {monthlyData.length === 0 ? (
+                    <div className="text-center py-8">
+                      <p className="text-gray-500">No revenue data available</p>
                     </div>
-                  ))}
+                  ) : (
+                    monthlyData.slice(-4).map((item, index) => (
+                      <div key={index} className="flex items-center justify-between p-3 bg-gray-50 rounded-xl">
+                        <div>
+                          <p className="font-semibold text-gray-900">{item._id || 'N/A'}</p>
+                          <p className="text-sm text-gray-600">{item.count || 0} subscriptions</p>
+                        </div>
+                        <div className="text-right">
+                          <p className="font-bold text-gray-900">Rs {(item.revenue || 0).toLocaleString()}</p>
+                        </div>
+                      </div>
+                    ))
+                  )}
                 </div>
               </div>
             </div>

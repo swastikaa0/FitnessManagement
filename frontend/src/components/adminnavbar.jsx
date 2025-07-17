@@ -7,16 +7,19 @@ import {
   DollarSign,
   LogOut,
   Users,
-  Shield
+  Shield,
+  CreditCard
 } from 'lucide-react';
+import { useAuth } from '../contexts/AuthContext';
 
 export default function AdminNavbar() {
   const [isExpanded, setIsExpanded] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();
+  const { logout } = useAuth();
 
   const handleSignOut = () => {
-    navigate('/signout');
+    logout();
   };
 
   const handleLogoClick = () => {
@@ -28,6 +31,7 @@ export default function AdminNavbar() {
     { id: 'meals', label: 'Meals', icon: Utensils, path: '/admin/meals' },
     { id: 'workouts', label: 'Workouts', icon: Dumbbell, path: '/admin/workouts' },
     { id: 'revenue', label: 'Revenue', icon: DollarSign, path: '/admin/revenue' },
+    { id: 'subscriptions', label: 'Subscriptions', icon: CreditCard, path: '/admin/subscriptions' },
     { id: 'users', label: 'Users', icon: Users, path: '/admin/users' },
   ];
 

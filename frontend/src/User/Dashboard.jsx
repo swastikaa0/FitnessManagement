@@ -1,204 +1,8 @@
-// import React, { useState, useEffect } from 'react';
-// import { TrendingUp, Dumbbell, Calendar, Trophy } from 'lucide-react';
-
-// const Dashboard = () => {
-//   const [isVisible, setIsVisible] = useState(false);
-//   const [hoveredFeature, setHoveredFeature] = useState(null);
-
-//   useEffect(() => {
-//     setIsVisible(true);
-//   }, []);
-
-//   const features = [
-//     {
-//       id: 1,
-//       icon: <TrendingUp className="w-8 h-8 text-blue-500" />,
-//       title: "Track Your Progress",
-//       description: "Monitor your daily exercise as improvement over time.",
-//       color: "from-blue-500 to-blue-600"
-//     },
-//     {
-//       id: 2,
-//       icon: <Dumbbell className="w-8 h-8 text-blue-500" />,
-//       title: "Find the Best Workouts",
-//       description: "Browse a wide range of exercises for every fitness level.",
-//       color: "from-purple-500 to-purple-600"
-//     },
-//     {
-//       id: 3,
-//       icon: <Calendar className="w-8 h-8 text-blue-500" />,
-//       title: "Customize Your Plan",
-//       description: "Create personalized workout plans that suit your goals.",
-//       color: "from-indigo-500 to-indigo-600"
-//     },
-//     {
-//       id: 4,
-//       icon: <Trophy className="w-8 h-8 text-blue-500" />,
-//       title: "Join Challenges",
-//       description: "Stay motivated by participating in our fitness challenges.",
-//       color: "from-cyan-500 to-cyan-600"
-//     }
-//   ];
-
-//   return (
-//     <div className="min-h-screen relative text-white overflow-hidden">
-//       {/* Background Image */}
-//       <div 
-//         className="fixed inset-0 w-full h-full bg-cover bg-center bg-no-repeat"
-//         style={{
-//           backgroundImage: `linear-gradient(rgba(15, 23, 42, 0.75), rgba(15, 23, 42, 0.75)), url('https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80')`,
-//           backgroundAttachment: 'fixed'
-//         }}
-//       />
-//       {/* Header */}
-//       <header className="flex justify-between items-center p-6 relative z-10">
-//         <div className={`text-2xl font-bold transform transition-all duration-1000 ${
-//           isVisible ? 'translate-x-0 opacity-100' : '-translate-x-10 opacity-0'
-//         }`}>
-//           FIT ME
-//         </div>
-//         <button className={`bg-blue-600 hover:bg-blue-700 px-6 py-2 rounded-lg font-medium transition-all duration-300 transform hover:scale-105 hover:shadow-lg ${
-//           isVisible ? 'translate-x-0 opacity-100' : 'translate-x-10 opacity-0'
-//         }`}>
-//           Log in
-//         </button>
-//       </header>
-
-//       {/* Hero Section */}
-//       <div className="flex flex-col lg:flex-row items-center justify-between px-6 lg:px-12 py-12 lg:py-20">
-//         {/* Left Content */}
-//         <div className="lg:w-1/2 space-y-8">
-//           <div className={`transform transition-all duration-1000 delay-300 ${
-//             isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
-//           }`}>
-//             <h1 className="text-5xl lg:text-7xl font-bold leading-tight mb-6">
-//               Get Fit.{' '}
-//               <span className="bg-gradient-to-r from-blue-400 to-emerald-400 bg-clip-text text-transparent animate-pulse">
-//                 Stay
-//               </span>
-//               <br />
-//               Healthy
-//             </h1>
-//           </div>
-          
-//           <div className={`transform transition-all duration-1000 delay-500 ${
-//             isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
-//           }`}>
-//             <p className="text-xl lg:text-2xl text-gray-300 mb-8 leading-relaxed">
-//               Track your workouts, monitor progress,<br />
-//               and reach your fitness goals with our app.
-//             </p>
-//           </div>
-
-//           <div className={`transform transition-all duration-1000 delay-700 ${
-//             isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
-//           }`}>
-//             <button className="bg-blue-600 hover:bg-blue-700 px-8 py-4 rounded-xl text-lg font-semibold transition-all duration-300 transform hover:scale-105 hover:shadow-2xl hover:shadow-blue-500/25">
-//               Get Started
-//             </button>
-//           </div>
-//         </div>
-
-//         {/* Right Content - Hero Image Placeholder */}
-//         <div className="lg:w-1/2 mt-12 lg:mt-0 flex justify-center">
-//           <div className={`relative transform transition-all duration-1000 delay-1000 ${
-//             isVisible ? 'translate-x-0 opacity-100' : 'translate-x-10 opacity-0'
-//           }`}>
-//             {/* Animated background elements */}
-//             <div className="absolute -inset-4 bg-gradient-to-r from-blue-500/20 to-emerald-500/20 rounded-3xl blur-xl animate-pulse"></div>
-//             <div className="absolute inset-0 bg-gradient-to-br from-blue-500/10 to-purple-500/10 rounded-2xl animate-ping"></div>
-            
-//             {/* Main hero visual */}
-//             <div className="relative bg-gradient-to-br from-slate-800 to-slate-700 p-8 rounded-2xl shadow-2xl border border-slate-600/50">
-//               <div className="w-80 h-96 bg-gradient-to-br from-blue-500/20 to-emerald-500/20 rounded-xl flex items-center justify-center">
-//                 <div className="text-center space-y-4">
-//                   <div className="w-20 h-20 bg-gradient-to-r from-blue-500 to-emerald-500 rounded-full mx-auto animate-bounce flex items-center justify-center">
-//                     <Dumbbell className="w-10 h-10 text-white" />
-//                   </div>
-//                   <p className="text-lg font-semibold text-gray-300">Your Fitness Journey</p>
-//                   <p className="text-sm text-gray-400">Starts Here</p>
-//                 </div>
-//               </div>
-//             </div>
-//           </div>
-//         </div>
-//       </div>
-
-//       {/* Features Section */}
-//       <div className="px-6 lg:px-12 py-16">
-//         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-//           {features.map((feature, index) => (
-//             <div
-//               key={feature.id}
-//               className={`transform transition-all duration-700 delay-${index + 2}00 ${
-//                 isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
-//               }`}
-//               onMouseEnter={() => setHoveredFeature(feature.id)}
-//               onMouseLeave={() => setHoveredFeature(null)}
-//             >
-//               <div className={`bg-slate-800/50 backdrop-blur-sm p-6 rounded-2xl border border-slate-700/50 transition-all duration-300 transform hover:scale-105 hover:shadow-xl hover:shadow-blue-500/10 ${
-//                 hoveredFeature === feature.id ? 'bg-slate-700/50 border-blue-500/50' : ''
-//               }`}>
-//                 <div className={`mb-4 transform transition-all duration-300 ${
-//                   hoveredFeature === feature.id ? 'scale-110 rotate-12' : ''
-//                 }`}>
-//                   <div className={`w-14 h-14 bg-gradient-to-r ${feature.color} rounded-xl flex items-center justify-center mb-4`}>
-//                     {feature.icon}
-//                   </div>
-//                 </div>
-//                 <h3 className="text-xl font-bold mb-3 text-white">{feature.title}</h3>
-//                 <p className="text-gray-400 leading-relaxed">{feature.description}</p>
-//               </div>
-//             </div>
-//           ))}
-//         </div>
-//       </div>
-
-//       {/* Why Choose Us Section */}
-//       <div className="px-6 lg:px-12 py-16">
-//         <div className={`text-center transform transition-all duration-1000 delay-1000 ${
-//           isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
-//         }`}>
-//           <h2 className="text-4xl lg:text-5xl font-bold mb-8">
-//             Why Choose{' '}
-//             <span className="bg-gradient-to-r from-blue-400 to-emerald-400 bg-clip-text text-transparent">
-//               Us
-//             </span>
-//           </h2>
-          
-//           <div className="max-w-4xl mx-auto">
-//             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12">
-//               {[
-//                 { number: "10K+", label: "Active Users", delay: "delay-1200" },
-//                 { number: "500+", label: "Workout Plans", delay: "delay-1400" },
-//                 { number: "98%", label: "Success Rate", delay: "delay-1600" }
-//               ].map((stat, index) => (
-//                 <div key={index} className={`transform transition-all duration-1000 ${stat.delay} ${
-//                   isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
-//                 }`}>
-//                   <div className="bg-gradient-to-br from-slate-800 to-slate-700 p-8 rounded-2xl border border-slate-600/50 hover:border-blue-500/50 transition-all duration-300 transform hover:scale-105">
-//                     <div className="text-4xl font-bold bg-gradient-to-r from-blue-400 to-emerald-400 bg-clip-text text-transparent mb-2">
-//                       {stat.number}
-//                     </div>
-//                     <div className="text-gray-400 font-medium">{stat.label}</div>
-//                   </div>
-//                 </div>
-//               ))}
-//             </div>
-//           </div>
-//         </div>
-//       </div>
-
-
-//     </div>
-//   );
-// };
-
-// export default Dashboard;
-
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Navbar from '../components/navbar';
 import Header from '../components/header';
+import { useAuth } from '../contexts/AuthContext';
+import apiService from '../services/api';
 import { 
   Activity, 
   Flame, 
@@ -218,18 +22,110 @@ import {
   Trophy,
   BarChart3,
   Utensils,
-  Eye
+  Eye,
+  AlertCircle
 } from 'lucide-react';
 
 export default function Dashboard() {
+  const { user } = useAuth();
+  const [dashboardData, setDashboardData] = useState(null);
+  const [dailyNutrition, setDailyNutrition] = useState(null);
+  const [userWorkouts, setUserWorkouts] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const [retrying, setRetrying] = useState(false);
+
+  useEffect(() => {
+    fetchDashboardData();
+  }, []);
+
+  const fetchDashboardData = async () => {
+    try {
+      setLoading(!retrying);
+      setRetrying(false);
+      setError(null);
+      
+      const today = new Date().toISOString().split('T')[0];
+      
+      const [dashboardResponse, nutritionResponse, workoutsResponse] = await Promise.all([
+        apiService.users.getDashboard(),
+        apiService.meals.getDailyNutrition(today),
+        apiService.workouts.getUserWorkouts()
+      ]);
+      
+      setDashboardData(dashboardResponse);
+      setDailyNutrition(nutritionResponse.data?.data || nutritionResponse.data || nutritionResponse);
+      setUserWorkouts(workoutsResponse.data?.workouts || []);
+    } catch (err) {
+      console.error('Failed to fetch dashboard data:', err);
+      setError('Failed to load dashboard data');
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleRetry = () => {
+    setRetrying(true);
+    fetchDashboardData();
+  };
+
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 flex">
+        <Navbar />
+        <div className="flex-1 flex flex-col">
+          <Header />
+          <div className="flex-1 flex items-center justify-center">
+            <div className="text-center">
+              <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto mb-4"></div>
+              <p className="text-gray-600">Loading dashboard...</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 flex">
+        <Navbar />
+        <div className="flex-1 flex flex-col">
+          <Header />
+          <div className="flex-1 flex items-center justify-center">
+            <div className="text-center">
+              <AlertCircle size={64} className="text-red-500 mx-auto mb-4" />
+              <p className="text-red-600 text-lg mb-4">{error}</p>
+              <button 
+                onClick={handleRetry}
+                disabled={retrying}
+                className="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors disabled:opacity-50 flex items-center gap-2 mx-auto"
+              >
+                {retrying && <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white"></div>}
+                {retrying ? 'Retrying...' : 'Try Again'}
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  const caloriesBurned = userWorkouts
+    .filter(w => w.status === 'completed')
+    .reduce((total, w) => total + (w.totalCaloriesBurned || w.workout?.estimatedCalories || 0), 0);
+
+  const consumedCalories = dailyNutrition?.totalNutrition?.calories || 0;
+  const consumedProtein = dailyNutrition?.totalNutrition?.protein || 0;
+
   const healthStats = [
     {
       id: 1,
-      title: 'Total Workouts',
-      value: '45',
-      unit: 'sessions',
-      change: 'On Track',
-      icon: Dumbbell,
+      title: 'Calories Today',
+      value: consumedCalories.toString(),
+      unit: 'kcal',
+      change: 'Consumed',
+      icon: Utensils,
       color: 'bg-gradient-to-r from-blue-500 to-blue-600',
       bgColor: 'bg-blue-50',
       textColor: 'text-blue-600',
@@ -238,9 +134,9 @@ export default function Dashboard() {
     {
       id: 2,
       title: 'Calories Burned',
-      value: '2,450',
+      value: caloriesBurned.toLocaleString(),
       unit: 'kcal',
-      change: 'Excellent',
+      change: 'Total Burned',
       icon: Flame,
       color: 'bg-gradient-to-r from-red-500 to-red-600',
       bgColor: 'bg-red-50',
@@ -249,11 +145,11 @@ export default function Dashboard() {
     },
     {
       id: 3,
-      title: 'Active Days',
-      value: '28',
-      unit: 'days',
-      change: 'Great Progress',
-      icon: Calendar,
+      title: 'Protein Today',
+      value: consumedProtein.toString(),
+      unit: 'g',
+      change: 'Consumed',
+      icon: Target,
       color: 'bg-gradient-to-r from-green-500 to-green-600',
       bgColor: 'bg-green-50',
       textColor: 'text-green-600',
@@ -261,11 +157,11 @@ export default function Dashboard() {
     },
     {
       id: 4,
-      title: 'Fitness Score',
-      value: '87',
-      unit: '/100',
-      change: "You're Fit!",
-      icon: Star,
+      title: 'Total Workouts',
+      value: userWorkouts.length.toString(),
+      unit: 'sessions',
+      change: 'All Time',
+      icon: Dumbbell,
       color: 'bg-gradient-to-r from-purple-500 to-purple-600',
       bgColor: 'bg-purple-50',
       textColor: 'text-purple-600',
@@ -273,48 +169,41 @@ export default function Dashboard() {
     }
   ];
 
+  const formatTimeAgo = (date) => {
+    const now = new Date();
+    const diffInHours = Math.floor((now - new Date(date)) / (1000 * 60 * 60));
+    
+    if (diffInHours < 1) return 'Just now';
+    if (diffInHours === 1) return '1 hour ago';
+    if (diffInHours < 24) return `${diffInHours} hours ago`;
+    
+    const diffInDays = Math.floor(diffInHours / 24);
+    if (diffInDays === 1) return '1 day ago';
+    return `${diffInDays} days ago`;
+  };
+
   const todayActivities = [
-    {
-      id: 1,
-      name: 'Morning HIIT Workout',
-      time: '2 hours ago',
-      duration: '45 min',
-      calories: '320 kcal',
-      status: 'completed',
-      icon: Zap,
-      color: 'text-yellow-600 bg-yellow-100'
-    },
-    {
-      id: 2,
-      name: 'Protein Smoothie Logged',
-      time: '3 hours ago',
-      duration: '5 min',
-      calories: '280 kcal',
-      status: 'completed',
-      icon: Coffee,
-      color: 'text-green-600 bg-green-100'
-    },
-    {
-      id: 3,
-      name: 'Evening Yoga Session',
-      time: '1 day ago',
-      duration: '30 min',
-      calories: '150 kcal',
-      status: 'completed',
-      icon: Activity,
-      color: 'text-purple-600 bg-purple-100'
-    },
-    {
-      id: 4,
-      name: 'Strength Training',
-      time: '2 days ago',
-      duration: '60 min',
-      calories: '400 kcal',
-      status: 'completed',
+    ...(dashboardData?.today?.workouts?.map(workout => ({
+      id: `workout-${workout.id}`,
+      name: workout.name,
+      time: formatTimeAgo(workout.scheduledTime),
+      duration: `${workout.duration} min`,
+      calories: `${workout.calories} kcal`,
+      status: workout.status,
       icon: Dumbbell,
-      color: 'text-blue-600 bg-blue-100'
-    }
-  ];
+      color: workout.status === 'completed' ? 'text-blue-600 bg-blue-100' : 'text-gray-600 bg-gray-100'
+    })) || []),
+    ...(dashboardData?.today?.meals?.map(meal => ({
+      id: `meal-${meal.id}`,
+      name: meal.name,
+      time: formatTimeAgo(meal.time),
+      duration: meal.type,
+      calories: `${meal.calories} kcal`,
+      status: 'completed',
+      icon: meal.type === 'breakfast' ? Coffee : meal.type === 'lunch' ? Utensils : Apple,
+      color: 'text-green-600 bg-green-100'
+    })) || [])
+  ].slice(0, 4);
 
   const quickActions = [
     {
@@ -359,7 +248,9 @@ export default function Dashboard() {
               <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-blue-100 to-purple-100 rounded-full -mr-16 -mt-16 opacity-60"></div>
               <div className="relative z-10">
                 <div>
-                  <h1 className="text-3xl font-bold text-gray-800 mb-2">Welcome back, Champion! 🏆</h1>
+                  <h1 className="text-3xl font-bold text-gray-800 mb-2">
+                    Welcome back, {user?.name || 'Champion'}! 🏆
+                  </h1>
                   <p className="text-gray-600 text-lg">Ready to crush your fitness goals today?</p>
                 </div>
               </div>
@@ -393,6 +284,53 @@ export default function Dashboard() {
             </div>
 
             <div className="bg-white rounded-3xl p-8 shadow-xl border border-gray-100">
+              <div className="flex items-center space-x-3 mb-6">
+                <div className="w-10 h-10 bg-gradient-to-r from-green-500 to-blue-600 rounded-xl flex items-center justify-center">
+                  <Utensils size={20} className="text-white" />
+                </div>
+                <h2 className="text-2xl font-bold text-gray-800">Today's Nutrition</h2>
+              </div>
+              
+              <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+                <div className="bg-blue-50 rounded-2xl p-6 shadow-sm border border-blue-100 hover:shadow-lg transition-all duration-300 relative overflow-hidden">
+                  <div className="absolute top-0 right-0 w-20 h-20 bg-blue-100 rounded-full -mr-10 -mt-10"></div>
+                  <div className="relative z-10">
+                    <h3 className="text-sm font-semibold text-gray-500 uppercase tracking-wide">Calories</h3>
+                    <p className="text-3xl font-bold text-gray-800 mt-2">{consumedCalories}</p>
+                    <p className="text-sm text-gray-400 mt-1">kcal consumed</p>
+                  </div>
+                </div>
+                
+                <div className="bg-green-50 rounded-2xl p-6 shadow-sm border border-green-100 hover:shadow-lg transition-all duration-300 relative overflow-hidden">
+                  <div className="absolute top-0 right-0 w-20 h-20 bg-green-100 rounded-full -mr-10 -mt-10"></div>
+                  <div className="relative z-10">
+                    <h3 className="text-sm font-semibold text-gray-500 uppercase tracking-wide">Protein</h3>
+                    <p className="text-3xl font-bold text-green-600 mt-2">{consumedProtein}</p>
+                    <p className="text-sm text-gray-400 mt-1">grams consumed</p>
+                  </div>
+                </div>
+                
+                <div className="bg-orange-50 rounded-2xl p-6 shadow-sm border border-orange-100 hover:shadow-lg transition-all duration-300 relative overflow-hidden">
+                  <div className="absolute top-0 right-0 w-20 h-20 bg-orange-100 rounded-full -mr-10 -mt-10"></div>
+                  <div className="relative z-10">
+                    <h3 className="text-sm font-semibold text-gray-500 uppercase tracking-wide">Carbs</h3>
+                    <p className="text-3xl font-bold text-orange-600 mt-2">{dailyNutrition?.totalNutrition?.carbohydrates || 0}</p>
+                    <p className="text-sm text-gray-400 mt-1">grams consumed</p>
+                  </div>
+                </div>
+                
+                <div className="bg-purple-50 rounded-2xl p-6 shadow-sm border border-purple-100 hover:shadow-lg transition-all duration-300 relative overflow-hidden">
+                  <div className="absolute top-0 right-0 w-20 h-20 bg-purple-100 rounded-full -mr-10 -mt-10"></div>
+                  <div className="relative z-10">
+                    <h3 className="text-sm font-semibold text-gray-500 uppercase tracking-wide">Fat</h3>
+                    <p className="text-3xl font-bold text-purple-600 mt-2">{dailyNutrition?.totalNutrition?.fat || 0}</p>
+                    <p className="text-sm text-gray-400 mt-1">grams consumed</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="bg-white rounded-3xl p-8 shadow-xl border border-gray-100">
               <div className="flex items-center justify-between mb-6">
                 <div className="flex items-center space-x-3">
                   <div className="w-10 h-10 bg-gradient-to-r from-blue-500 to-purple-600 rounded-xl flex items-center justify-center">
@@ -407,27 +345,37 @@ export default function Dashboard() {
               </div>
               
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                {todayActivities.map((activity) => {
-                  const IconComponent = activity.icon;
-                  return (
-                    <div key={activity.id} className="flex items-center space-x-4 p-4 bg-gray-50 rounded-2xl hover:bg-gray-100 transition-colors">
-                      <div className={`w-12 h-12 rounded-2xl flex items-center justify-center ${activity.color}`}>
-                        <IconComponent size={20} />
-                      </div>
-                      <div className="flex-1">
-                        <p className="font-semibold text-gray-800">{activity.name}</p>
-                        <div className="flex items-center space-x-4 text-sm text-gray-500">
-                          <span>{activity.time}</span>
-                          <span>•</span>
-                          <span>{activity.duration}</span>
-                          <span>•</span>
-                          <span>{activity.calories}</span>
+                {todayActivities.length > 0 ? (
+                  todayActivities.map((activity) => {
+                    const IconComponent = activity.icon;
+                    return (
+                      <div key={activity.id} className="flex items-center space-x-4 p-4 bg-gray-50 rounded-2xl hover:bg-gray-100 transition-colors">
+                        <div className={`w-12 h-12 rounded-2xl flex items-center justify-center ${activity.color}`}>
+                          <IconComponent size={20} />
                         </div>
+                        <div className="flex-1">
+                          <p className="font-semibold text-gray-800">{activity.name}</p>
+                          <div className="flex items-center space-x-4 text-sm text-gray-500">
+                            <span>{activity.time}</span>
+                            <span>•</span>
+                            <span>{activity.duration}</span>
+                            <span>•</span>
+                            <span>{activity.calories}</span>
+                          </div>
+                        </div>
+                        <div className="w-2 h-2 bg-green-400 rounded-full"></div>
                       </div>
-                      <div className="w-2 h-2 bg-green-400 rounded-full"></div>
+                    );
+                  })
+                ) : (
+                  <div className="col-span-2 text-center py-8">
+                    <div className="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                      <Activity size={32} className="text-gray-400" />
                     </div>
-                  );
-                })}
+                    <p className="text-gray-500 text-lg mb-2">No activities today</p>
+                    <p className="text-gray-400 text-sm">Start a workout or log a meal to see your activities here!</p>
+                  </div>
+                )}
               </div>
             </div>
 

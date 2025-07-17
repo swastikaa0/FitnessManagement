@@ -1,14 +1,22 @@
-
-
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Bell, Shield } from 'lucide-react';
+import { Bell, Shield, LogOut } from 'lucide-react';
+import { useAuth } from '../contexts/AuthContext';
 
 export default function AdminHeader() {
   const navigate = useNavigate();
+  const { logout } = useAuth();
 
   const handleProfileClick = () => {
     navigate('/admin/profile');
+  };
+
+  const handleNotificationClick = () => {
+    navigate('/notifications');
+  };
+
+  const handleLogout = () => {
+    logout();
   };
 
   return (
@@ -19,13 +27,24 @@ export default function AdminHeader() {
 
         <div className="flex items-center space-x-6">
           <div className="relative">
-            <button className="p-2 text-gray-500 hover:text-gray-700 hover:bg-gray-50 rounded-lg transition-colors relative">
+            <button 
+              onClick={handleNotificationClick}
+              className="p-2 text-gray-500 hover:text-gray-700 hover:bg-gray-50 rounded-lg transition-colors relative"
+            >
               <Bell size={20} />
               <span className="absolute -top-1 -right-1 w-5 h-5 bg-red-500 text-white text-xs rounded-full flex items-center justify-center font-medium">
                 5
               </span>
             </button>
           </div>
+
+          <button 
+            onClick={handleLogout}
+            className="p-2 text-gray-500 hover:text-red-600 hover:bg-red-50 rounded-lg transition-colors"
+            title="Logout"
+          >
+            <LogOut size={20} />
+          </button>
 
           <button 
             onClick={handleProfileClick}

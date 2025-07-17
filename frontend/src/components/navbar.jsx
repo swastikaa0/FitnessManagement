@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { useAuth } from '../contexts/AuthContext';
 import { 
   Home, 
   Dumbbell, 
@@ -9,16 +10,18 @@ import {
   Users, 
   BarChart3, 
   LogOut,
-  Trophy
+  CreditCard,
+  Crown
 } from 'lucide-react';
 
 export default function Navbar() {
   const [isExpanded, setIsExpanded] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();
+  const { logout, user, isPremium } = useAuth();
 
-  const handleSignOut = () => {
-    navigate('/signout');
+  const handleSignOut = async () => {
+    await logout();
   };
 
   const handleLogoClick = () => {
@@ -30,10 +33,10 @@ export default function Navbar() {
     { id: 'workouts', label: 'Workouts', icon: Dumbbell, path: '/workouts' },
     { id: 'meals', label: 'Nutrition', icon: Salad, path: '/meals' },
     { id: 'myworkouts', label: 'Progress', icon: TrendingUp, path: '/my-workouts' },
-    { id: 'mymealplans', label: 'Plans', icon: ClipboardList, path: '/my-meal-plans' },
-    { id: 'challenges', label: 'Challenges', icon: Trophy, path: '/challenges' },
+    { id: 'mymealplans', label: 'Plans', icon: ClipboardList, path: '/my-meal-plans', premium: true },
+    { id: 'payments', label: 'Payments', icon: CreditCard, path: '/payments' },
     { id: 'Analytics', label: 'Analytics', icon: Users, path: '/analytics' },
-    { id: 'suggestions', label: 'Suggestion', icon: BarChart3, path: '/suggestions' },
+    { id: 'suggestions', label: 'Suggestion', icon: BarChart3, path: '/suggestions', premium: true },
   ];
 
   return (
@@ -64,18 +67,30 @@ export default function Navbar() {
         <ul className="space-y-2">
           {menuItems.map((item) => {
             const IconComponent = item.icon;
+            const isDisabled = item.premium && !isPremium;
+            
             return (
               <li key={item.id}>
                 <Link
-                  to={item.path}
+                  to={isDisabled ? '/payments' : item.path}
                   className={`w-full flex items-center px-3 py-3 rounded-lg transition-all duration-200 group relative ${
                     location.pathname === item.path
                       ? 'bg-blue-50 text-blue-600 border border-blue-200'
+                      : isDisabled
+                      ? 'text-gray-400 hover:text-gray-500 hover:bg-gray-50 cursor-pointer'
                       : 'text-gray-600 hover:text-gray-800 hover:bg-gray-50'
                   }`}
                 >
-                  <div className="flex-shrink-0 w-6 flex justify-center">
+                  <div className="flex-shrink-0 w-6 flex justify-center relative">
                     <IconComponent size={20} />
+                    {item.premium && (
+                      <Crown 
+                        size={12} 
+                        className={`absolute -top-1 -right-1 ${
+                          isPremium ? 'text-yellow-500' : 'text-gray-400'
+                        }`} 
+                      />
+                    )}
                   </div>
                   
                   <span 
@@ -84,11 +99,17 @@ export default function Navbar() {
                     }`}
                   >
                     {item.label}
+                    {item.premium && !isPremium && isExpanded && (
+                      <span className="ml-2 text-xs bg-yellow-100 text-yellow-800 px-2 py-1 rounded-full">
+                        PRO
+                      </span>
+                    )}
                   </span>
 
                   {!isExpanded && (
                     <div className="absolute left-full ml-3 px-3 py-2 bg-gray-800 text-white text-sm rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none z-50 whitespace-nowrap">
                       {item.label}
+                      {item.premium && !isPremium && ' (Premium)'}
                       <div className="absolute left-0 top-1/2 transform -translate-y-1/2 -translate-x-1 w-2 h-2 bg-gray-800 rotate-45"></div>
                     </div>
                   )}
