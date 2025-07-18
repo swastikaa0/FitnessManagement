@@ -167,7 +167,6 @@ export default function SignupPage() {
         <div className="hidden md:block md:w-1/2 relative">
           <img
             src="/images/Signup.jpg" 
-            alt="Signup Illustration"
             className="w-full h-full object-cover"
           />
         </div>
