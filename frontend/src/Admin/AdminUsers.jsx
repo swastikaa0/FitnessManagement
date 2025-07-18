@@ -14,6 +14,8 @@ export default function AdminUsers() {
   const [actionSuccess, setActionSuccess] = useState('');
   const [showAddModal, setShowAddModal] = useState(false);
 
+  console.log(users)
+
   const getInitials = (name) => {
     return name
       .split(' ')
@@ -82,7 +84,7 @@ export default function AdminUsers() {
     }
   };
 
-  const filteredUsers = (users?.data?.users || []).filter(user => {
+  const filteredUsers = (users?.users || []).filter(user => {
     const matchesSearch = 
       user.name?.toLowerCase().includes(searchTerm.toLowerCase()) ||
       user.email?.toLowerCase().includes(searchTerm.toLowerCase());

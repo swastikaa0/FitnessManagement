@@ -35,8 +35,6 @@ export default function Navbar() {
     { id: 'myworkouts', label: 'Progress', icon: TrendingUp, path: '/my-workouts' },
     { id: 'mymealplans', label: 'Plans', icon: ClipboardList, path: '/my-meal-plans', premium: true },
     { id: 'payments', label: 'Payments', icon: CreditCard, path: '/payments' },
-    { id: 'Analytics', label: 'Analytics', icon: Users, path: '/analytics' },
-    { id: 'suggestions', label: 'Suggestion', icon: BarChart3, path: '/suggestions', premium: true },
   ];
 
   return (
